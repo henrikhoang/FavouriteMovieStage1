@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Favourite Movie</string>
+    <string name="error_message">Failed to load data, error occured</string>
+    <string name="action_refresh">Refresh</string>
+</resources>
