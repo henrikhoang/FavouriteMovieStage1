@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import static com.example.henrikhoang.projectmoviestage1.R.styleable.RecyclerView;
+
 /**
  * Created by henrikhoang on 5/25/17.
  */
