@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1d10207aaa5a1610566edfbe7ac3f089faf8dd9d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e8298b312c59dab2a18e8293501d8cdd860c5d33">
+        <dex dex="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_5365ee5f62a24b1e42b2216d42fb779dcb5ae96c/classes.dex" />
+    </item>
+
+</items>
