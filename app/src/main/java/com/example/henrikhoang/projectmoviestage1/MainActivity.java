@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
                         getResponseFromHttpUrl(movieRequestURL);
 
                 String[] simpleJsonMovieData = OpenMovieJsonUtils
-                        .getSimpleMovieStringsFromJson(MainActivity.this, jsonMovieResponse);
+                        .getSimpleMoviePosterFromJson(MainActivity.this, jsonMovieResponse);
 
                 return simpleJsonMovieData;
 

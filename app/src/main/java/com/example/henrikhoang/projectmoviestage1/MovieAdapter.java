@@ -6,8 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import com.squareup.picasso.Picasso;
 
 import static com.example.henrikhoang.projectmoviestage1.R.styleable.RecyclerView;
 
@@ -21,7 +24,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     private final MovieAdapterOnClickHandler mClickHandler;
 
-
+    private Context context;
 
     public interface MovieAdapterOnClickHandler {
         void onClick (String listedMovie);
@@ -33,11 +36,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
 
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
-        public final TextView mWeatherTextView;
+        //public final TextView mWeatherTextView;
+
+        public final ImageView mMovieImageView;
 
         public MovieAdapterViewHolder(View view) {
             super(view);
-            mWeatherTextView = (TextView) view.findViewById(R.id.tv_movie_data);
+     //     mWeatherTextView = (TextView) view.findViewById(R.id.tv_movie_data);
+            mMovieImageView = (ImageView) view.findViewById(R.id.tv_movie_poster);
             view.setOnClickListener(this);
         }
 
@@ -50,7 +56,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     }
 
     @Override
-    public MovieAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public MovieAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType)  {
         Context context = viewGroup.getContext();
         int layoutIdForListItem = R.layout.movie_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -63,7 +69,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     @Override
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
         String movieBeingSelected = mMovieData[position];
-        holder.mWeatherTextView.setText(movieBeingSelected);
+//        try not presenting the TextView
+     //   holder.mWeatherTextView.setText(movieBeingSelected);
+
+        Picasso.with(MainActivity.cla).load(movieBeingSelected).into(holder.mMovieImageView);
     }
 
     @Override
