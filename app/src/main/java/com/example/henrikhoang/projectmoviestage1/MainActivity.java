@@ -1,6 +1,9 @@
 package com.example.henrikhoang.projectmoviestage1;
 
 import android.content.Context;
+import android.net.Uri;
+import android.util.Log;
+import com.example.henrikhoang.projectmoviestage1.MovieAdapter.MovieAdapterOnClickHandler;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +21,7 @@ import com.example.henrikhoang.projectmoviestage1.utility.OpenMovieJsonUtils;
 
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler {
+public class MainActivity extends AppCompatActivity implements MovieAdapterOnClickHandler {
 
     private RecyclerView mRecyclerView;
     private TextView mErrorTextView;
@@ -51,11 +54,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     private void loadMovieData() {
 
         showMovieDataView();
-        String choice = "popular";
-        new FetchMovieTask().execute(choice);
+        String choice = "";
+        new FetchMovieTask().execute();
     }
-    private void what() {
-         }
+
 
     @Override
     public void onClick(String listedMovie) {
@@ -99,11 +101,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
         @Override
         protected String[] doInBackground(String... params) {
-            if (params.length == 0) return null;
 
-            String selectedSearch = params[0];
 
-            URL movieRequestURL = Network.buildURL(selectedSearch);
+
+
+            URL movieRequestURL = Network.buildURL();
 
             try {
                 String jsonMovieResponse = Network.

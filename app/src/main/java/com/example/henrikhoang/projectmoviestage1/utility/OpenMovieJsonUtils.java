@@ -1,6 +1,6 @@
 package com.example.henrikhoang.projectmoviestage1.utility;
 
-import android.content.ContentValues;
+
 import android.content.Context;
 
 import org.json.JSONArray;
@@ -33,12 +33,12 @@ public final class OpenMovieJsonUtils {
         parsedMovieData = new String[movieArray.length()];
 
         for (int i = 0; i < movieArray.length(); i++) {
-            String title;
+            String movieTitle;
             JSONObject selectedMovie = movieArray.getJSONObject(i);
 
-            title = selectedMovie.getString(TITLE);
+            movieTitle = selectedMovie.getString(TITLE);
 
-            parsedMovieData[i] = title;
+            parsedMovieData[i] = movieTitle;
         }
 
         return parsedMovieData;

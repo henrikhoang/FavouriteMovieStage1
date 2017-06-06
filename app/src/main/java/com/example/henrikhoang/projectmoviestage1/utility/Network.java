@@ -23,18 +23,19 @@ public final class Network {
 //            "https://andfun-weather.udacity.com/weather";
 
     private static final String STATIC_MOVIE_URL =
-            "http://api.themoviedb.org/3/movie";
+            "https://api.themoviedb.org/3/movie/popular";
+
+    private static final String TEST_URL = "https://andfun-weather.udacity.com/staticweather";
 
     final static int NUM_PAGE = 1;
     final static String PAGE_PARAM = "page";
     final static String LANG_PARAM = "original_language";
     final static String language = "en";
-    final static String api = "api";
-    private static final String FORECAST_BASE_URL = STATIC_MOVIE_URL;
+    final static String api = "api_key";
+    private static final String MOVIE_BASE_URL = STATIC_MOVIE_URL;
 
-    public static URL buildURL(String searchQuery) {
-        Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
-                .appendPath(searchQuery)
+    public static URL buildURL() {
+        Uri builtUri = Uri.parse(MOVIE_BASE_URL).buildUpon()
                 .appendQueryParameter(api, API_KEY)
                 .appendQueryParameter(PAGE_PARAM, Integer.toString(NUM_PAGE))
                 .appendQueryParameter(LANG_PARAM, language)
