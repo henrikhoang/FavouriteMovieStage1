@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 
 
 import com.squareup.picasso.Picasso;
@@ -82,7 +82,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         return mMovieData.length;
     }
 
-    public void setmMovieData(String[] movieData) {
+    public void setMovieData(String[] movieData) {
         mMovieData = movieData;
         notifyDataSetChanged();
     }
