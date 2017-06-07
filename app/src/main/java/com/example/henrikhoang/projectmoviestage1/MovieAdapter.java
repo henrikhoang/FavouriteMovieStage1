@@ -30,8 +30,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         void onClick (String listedMovie);
     }
 
-    public MovieAdapter(MovieAdapterOnClickHandler clickHandler) {
+    public MovieAdapter(MovieAdapterOnClickHandler clickHandler, Context ctx) {
         mClickHandler = clickHandler;
+        context = ctx;
     }
 
 
@@ -72,7 +73,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 //        try not presenting the TextView
      //   holder.mWeatherTextView.setText(movieBeingSelected);
 
-        Picasso.with(MainActivity.cla).load(movieBeingSelected).into(holder.mMovieImageView);
+        Picasso.with(context).load(movieBeingSelected).into(holder.mMovieImageView);
     }
 
     @Override

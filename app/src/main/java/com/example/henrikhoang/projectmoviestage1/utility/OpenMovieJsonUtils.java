@@ -59,7 +59,7 @@ public final class OpenMovieJsonUtils {
             String path;
             JSONObject selectedMovie = movieArray.getJSONObject(i);
             path = selectedMovie.getString(POSTER);
-            parsedMovieData[i] = "http://image.tmdb.org/t/p/w185" + path;
+            parsedMovieData[i] = "http://image.tmdb.org/t/p/w500" + path;
         }
         return parsedMovieData;
     }
