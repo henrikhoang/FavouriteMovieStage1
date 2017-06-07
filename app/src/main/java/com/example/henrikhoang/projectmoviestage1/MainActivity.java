@@ -49,17 +49,19 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
 
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
-        loadMovieData();
+        loadMovieDataPopular();
     }
 
-    private void loadMovieData() {
-
+    private void loadMovieDataPopular() {
         showMovieDataView();
-        String choice = "";
         new FetchMovieTask().execute();
     }
 
-
+    private void loadMovieDataRate() {
+        showMovieDataView();
+        new FetchMovieTaskTopRated().execute();
+    }
+    
     @Override
     public void onClick(String listedMovie) {
         Context context = this;
@@ -86,9 +88,13 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemThatWasSelected = item.getItemId();
-        if (menuItemThatWasSelected == R.id.action_refresh) {
+        if (menuItemThatWasSelected == R.id.action_refresh || menuItemThatWasSelected == R.id.action_popolar) {
             mMovieAdapter.setMovieData(null);
-            loadMovieData();
+            loadMovieDataPopular();
+            return true;
+        } else if (menuItemThatWasSelected == R.id.action_top_rated) {
+            mMovieAdapter.setMovieData(null);
+            loadMovieDataRate();
             return true;
         }
         return super.onOptionsItemSelected(item);
