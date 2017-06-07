@@ -18,14 +18,13 @@ public final class Network {
 
     private static final String TAG = Network.class.getSimpleName();
 
-    private static final String API_KEY = "6712d9f6ddd870ad1a45854cde7e9e63";
-//  private static final String DYNAMIC_WEATHER_URL =
-//            "https://andfun-weather.udacity.com/weather";
+    private static final String API_KEY = "";
+//insert your own API key here
 
     private static final String STATIC_MOVIE_URL =
             "https://api.themoviedb.org/3/movie/popular";
 
-    private static final String TEST_URL = "https://andfun-weather.udacity.com/staticweather";
+    
 
     final static int NUM_PAGE = 1;
     final static String PAGE_PARAM = "page";
