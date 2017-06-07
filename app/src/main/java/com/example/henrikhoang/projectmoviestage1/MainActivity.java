@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mMovieAdapter = new MovieAdapter(this);
+        mMovieAdapter = new MovieAdapter(this, getApplicationContext());
 
         mRecyclerView.setAdapter(mMovieAdapter);
 
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
                         getResponseFromHttpUrl(movieRequestURL);
 
                 String[] simpleJsonMovieData = OpenMovieJsonUtils
-                        .getSimpleMovieStringsFromJson(MainActivity.this, jsonMovieResponse);
+                        .getSimpleMoviePosterFromJson(MainActivity.this, jsonMovieResponse);
 
                 return simpleJsonMovieData;
 
