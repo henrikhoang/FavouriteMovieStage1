@@ -1,6 +1,7 @@
 package com.example.henrikhoang.projectmoviestage1;
 
 import android.content.Context;
+import android.graphics.Path;
 import android.net.Uri;
 import android.util.Log;
 import com.example.henrikhoang.projectmoviestage1.MovieAdapter.MovieAdapterOnClickHandler;
@@ -81,17 +82,19 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         return true;
     }
 
+    //activities for menu items
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemThatWasSelected = item.getItemId();
         if (menuItemThatWasSelected == R.id.action_refresh) {
-            Context context = MainActivity.this;
-            String message = "Error occured";
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+            mMovieAdapter.setMovieData(null);
+            loadMovieData();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    //used when popular option is called
     public class FetchMovieTask extends AsyncTask<String, Void, String[]> {
         @Override
         protected void onPreExecute() {
@@ -102,10 +105,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         @Override
         protected String[] doInBackground(String... params) {
 
-
-
-
-            URL movieRequestURL = Network.buildURL();
+            URL movieRequestURL = Network.buildURLPopular();
 
             try {
                 String jsonMovieResponse = Network.
@@ -128,10 +128,44 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
             mLoadingIndicator.setVisibility(View.INVISIBLE);
             if(movieData != null) {
                 showMovieDataView();
-                mMovieAdapter.setmMovieData(movieData);
+                mMovieAdapter.setMovieData(movieData);
             } else {
                 showErrorMessage();
             }
+        }
+    }
+
+    // Used when top rated option is called
+    public class FetchMovieTaskTopRated extends AsyncTask<String, Void, String[]> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mLoadingIndicator.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected String[] doInBackground(String... params) {
+            URL movieRequestURL = Network.buildURLTopRated();
+            try {
+                String jsonMovieResponse = Network.getResponseFromHttpUrl(movieRequestURL);
+                String[] simpleJsonMovieData = OpenMovieJsonUtils.getSimpleMoviePosterFromJson(MainActivity.this,
+                        jsonMovieResponse);
+
+                return simpleJsonMovieData;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String[] movieData) {
+           mLoadingIndicator.setVisibility(View.INVISIBLE);
+            if(movieData != null) {
+                showMovieDataView();
+                mMovieAdapter.setMovieData(movieData);
+            } else { showErrorMessage();}
         }
     }
 }

@@ -33,7 +33,7 @@ public final class Network {
     final static String api = "api_key";
     private static final String MOVIE_BASE_URL = STATIC_MOVIE_URL;
 
-    public static URL buildURL() {
+    public static URL buildURLPopular() {
         Uri builtUri = Uri.parse(MOVIE_BASE_URL).buildUpon()
                 .appendQueryParameter(api, API_KEY)
                 .appendQueryParameter(PAGE_PARAM, Integer.toString(NUM_PAGE))
@@ -50,6 +50,10 @@ public final class Network {
 
         Log.v(TAG, "Built URL" + url);
         return url;
+    }
+
+    public static URL buildURLTopRated() {
+        Uri builtUri
     }
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
