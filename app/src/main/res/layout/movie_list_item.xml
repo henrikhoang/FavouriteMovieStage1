@@ -14,12 +14,12 @@
         android:padding="5dp"
 
         />
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/tv_movie_data"-->
-        <!--android:padding="16dp"-->
-        <!--style="@style/TextAppearance.AppCompat"/>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_movie_info"
+        android:padding="16dp"
+        style="@style/TextAppearance.AppCompat"/>
 
     <View android:layout_width="match_parent"
         android:layout_height="1dp"

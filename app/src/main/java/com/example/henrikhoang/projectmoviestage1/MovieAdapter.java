@@ -7,12 +7,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
+import android.widget.TextView;
 
 
 import com.squareup.picasso.Picasso;
 
-import static com.example.henrikhoang.projectmoviestage1.R.styleable.RecyclerView;
+
 
 /**
  * Created by henrikhoang on 5/25/17.
@@ -37,13 +37,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
 
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
-        //public final TextView mWeatherTextView;
+
+        public final TextView mMovieTextView;
 
         public final ImageView mMovieImageView;
 
         public MovieAdapterViewHolder(View view) {
             super(view);
-     //     mWeatherTextView = (TextView) view.findViewById(R.id.tv_movie_data);
+            mMovieTextView = (TextView) view.findViewById(R.id.tv_movie_info);
             mMovieImageView = (ImageView) view.findViewById(R.id.tv_movie_poster);
             view.setOnClickListener(this);
         }
@@ -70,8 +71,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     @Override
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
         String movieBeingSelected = mMovieData[position];
-//        try not presenting the TextView
-     //   holder.mWeatherTextView.setText(movieBeingSelected);
 
         Picasso.with(context).load(movieBeingSelected).into(holder.mMovieImageView);
     }

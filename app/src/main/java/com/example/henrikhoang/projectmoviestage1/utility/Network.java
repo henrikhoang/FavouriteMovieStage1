@@ -71,7 +71,7 @@ public final class Network {
             e.printStackTrace();
         }
 
-        Log.v(TAG, "Built URL" + url);
+//        Log.v(TAG, "Built URL" + url);
         return url;
     }
 

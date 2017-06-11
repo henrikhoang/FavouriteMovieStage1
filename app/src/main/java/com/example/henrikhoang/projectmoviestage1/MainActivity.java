@@ -1,6 +1,8 @@
 package com.example.henrikhoang.projectmoviestage1;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Path;
 import android.net.Uri;
 import android.util.Log;
@@ -61,12 +63,16 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         showMovieDataView();
         new FetchMovieTaskTopRated().execute();
     }
-    
+
     @Override
     public void onClick(String listedMovie) {
         Context context = this;
-        Toast.makeText(context, listedMovie, Toast.LENGTH_SHORT)
-                .show();
+        Class destinationClass = DetailActivity.class;
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setClass(context, destinationClass);
+        intent.putExtra("URL", listedMovie);
+        startActivity(intent);
+
     }
 
     private void showMovieDataView() {
@@ -78,9 +84,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         mRecyclerView.setVisibility(View.INVISIBLE);
         mErrorTextView.setVisibility(View.VISIBLE);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main,menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -88,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemThatWasSelected = item.getItemId();
-        if (menuItemThatWasSelected == R.id.action_refresh || menuItemThatWasSelected == R.id.action_popolar) {
+        if (menuItemThatWasSelected == R.id.action_refresh || menuItemThatWasSelected == R.id.action_popular) {
             mMovieAdapter.setMovieData(null);
             loadMovieDataPopular();
             return true;
@@ -132,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         @Override
         protected void onPostExecute(String[] movieData) {
             mLoadingIndicator.setVisibility(View.INVISIBLE);
-            if(movieData != null) {
+            if (movieData != null) {
                 showMovieDataView();
                 mMovieAdapter.setMovieData(movieData);
             } else {
@@ -159,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
                         jsonMovieResponse);
 
                 return simpleJsonMovieData;
+
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
@@ -167,12 +175,15 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
 
         @Override
         protected void onPostExecute(String[] movieData) {
-           mLoadingIndicator.setVisibility(View.INVISIBLE);
-            if(movieData != null) {
+            mLoadingIndicator.setVisibility(View.INVISIBLE);
+            if (movieData != null) {
                 showMovieDataView();
                 mMovieAdapter.setMovieData(movieData);
-            } else { showErrorMessage();}
+            } else {
+                showErrorMessage();
+            }
         }
     }
+
 }
 
