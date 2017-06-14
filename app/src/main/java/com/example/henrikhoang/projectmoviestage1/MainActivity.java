@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mMovieAdapter = new MovieAdapter(this, getApplicationContext());
+        mMovieAdapter = new MovieAdapter(this, getApplicationContext(), films);
 
         mRecyclerView.setAdapter(mMovieAdapter);
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
     }
 
     @Override
-    public void onClick(String film) {
+    public void onClick(Film film) {
         Context context = this;
         Toast.makeText(context, film+ " is clicked", Toast.LENGTH_SHORT)
                 .show();

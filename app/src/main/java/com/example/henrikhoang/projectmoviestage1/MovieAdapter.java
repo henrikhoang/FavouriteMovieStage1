@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,7 +18,8 @@ import java.util.List;
  * Created by henrikhoang on 5/25/17.
  */
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
+public class MovieAdapter
+        extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
 
 //    private String[] mMovieData;
 
@@ -28,12 +28,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     private Context context;
 
     public interface MovieAdapterOnClickHandler {
-        void onClick (String movie);
+        void onClick (Film film);
     }
 
-    public MovieAdapter(MovieAdapterOnClickHandler clickHandler, Context ctx) {
+    public MovieAdapter(MovieAdapterOnClickHandler clickHandler, Context ctx, List<Film> mFilms) {
         mClickHandler = clickHandler;
         context = ctx;
+        films = mFilms;
     }
 
 //    public MovieAdapter(Context ctx, List<Film> filmsList) {
@@ -60,8 +61,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            String movieClicked = films.get(adapterPosition).getTitle();
-            mClickHandler.onClick(movieClicked);
+            Film film = films.get(adapterPosition);
+            mClickHandler.onClick(film);
         }
     }
 
@@ -78,11 +79,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     @Override
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
-        Film film = films.get(position);
+        final Film film = films.get(position);
         String movieBeingSelected = film.getPosterPath();
-
-        Picasso.with(context).load("http://image.tmdb.org/t/p/w500"+
-                movieBeingSelected).into(holder.mMovieImageView);
+        String movieName = film.getTitle();
+        holder.mMovieTextView.setText(movieName);
+//        Picasso.with(context).load(R.drawable.logan_thumbnail).into(holder.mMovieImageView);
+        Picasso.with(context).load("http://image.tmdb.org/t/p/w500" + movieBeingSelected).into(holder.mMovieImageView);
     }
 
     @Override

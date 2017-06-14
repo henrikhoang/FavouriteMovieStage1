@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_movie_poster"
         android:padding="5dp"
-
         />
     <TextView
         android:layout_width="wrap_content"
