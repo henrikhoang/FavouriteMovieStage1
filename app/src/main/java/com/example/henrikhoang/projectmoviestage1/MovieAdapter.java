@@ -24,19 +24,24 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 //    private String[] mMovieData;
 
     private List<Film> films;
-
     private final MovieAdapterOnClickHandler mClickHandler;
-
     private Context context;
 
     public interface MovieAdapterOnClickHandler {
-        void onClick (Film film);
+        void onClick (String movie);
     }
 
     public MovieAdapter(MovieAdapterOnClickHandler clickHandler, Context ctx) {
         mClickHandler = clickHandler;
         context = ctx;
     }
+
+//    public MovieAdapter(Context ctx, List<Film> filmsList) {
+//        context = ctx;
+//        films = filmsList;
+//    }
+
+
 
 
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
@@ -55,8 +60,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            Film film = films.get(adapterPosition);
-            mClickHandler.onClick(film);
+            String movieClicked = films.get(adapterPosition).getTitle();
+            mClickHandler.onClick(movieClicked);
         }
     }
 
@@ -73,7 +78,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     @Override
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
-        String movieBeingSelected = films.get(position).getPosterPath();
+        Film film = films.get(position);
+        String movieBeingSelected = film.getPosterPath();
 
         Picasso.with(context).load("http://image.tmdb.org/t/p/w500"+
                 movieBeingSelected).into(holder.mMovieImageView);

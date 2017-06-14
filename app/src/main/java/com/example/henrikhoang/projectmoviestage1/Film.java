@@ -36,7 +36,7 @@ public class Film {
     }
 
     public void setPosterPath(String posterPath){
-         this.posterPath  = "http://image.tmdb.org/t/p/w500" + posterPath;
+         this.posterPath  = posterPath;
     }
 
     public String getDate () {
@@ -61,13 +61,13 @@ public class Film {
 
     public void setVote(int vote) { this.vote = vote; }
 
-    public Film(String fTitle, String fOverview,
-                int fVote, String fDate, String fPosterPath) {
-        this.title = fTitle;
-        this.overview = fOverview;
-        this.posterPath = fPosterPath;
-        this.vote = fVote;
-        this.date = fDate;
-    }
+//    public Film(String fTitle, String fOverview,
+//                int fVote, String fDate, String fPosterPath) {
+//        this.title = fTitle;
+//        this.overview = fOverview;
+//        this.posterPath = fPosterPath;
+//        this.vote = fVote;
+//        this.date = fDate;
+//    }
 
 }

@@ -27,13 +27,7 @@ public final class OpenMovieJsonUtils {
     public static List<Film> getSimpleMovieStringsFromJson(Context context, String movieJsonStr)
             throws JSONException {
 
-
-
-
-
         JSONObject movieJson = new JSONObject(movieJsonStr);
-
-
 
 //        title, release date, movie poster, vote average, and plot synopsis.
 
@@ -48,20 +42,13 @@ public final class OpenMovieJsonUtils {
 
             JSONObject selectedMovie = movieArray.getJSONObject(i);
 
+            Film tempFilm = new Film();
+            tempFilm.setTitle(selectedMovie.getString(TITLE));
+            tempFilm.setDate(selectedMovie.getString(RELEASE_DATE));
+            tempFilm.setOverview(selectedMovie.getString(PLOT));
+            tempFilm.setVote(selectedMovie.getInt(VOTE));
+            tempFilm.setPosterPath(selectedMovie.getString(POSTER));
 
-//            tempFilm.setTitle(selectedMovie.getString(TITLE));
-//            tempFilm.setDate(selectedMovie.getString(RELEASE_DATE));
-//            tempFilm.setOverview(selectedMovie.getString(PLOT));
-//            tempFilm.setVote(selectedMovie.getInt(VOTE));
-//            tempFilm.setPosterPath(selectedMovie.getString(POSTER));
-
-            String title = selectedMovie.getString(TITLE);
-            String date = selectedMovie.getString(RELEASE_DATE);
-            String overview = selectedMovie.getString(PLOT);
-            int vote = selectedMovie.getInt(VOTE);
-            String posterPath = selectedMovie.getString(POSTER);
-
-            Film tempFilm = new Film(title, overview, vote, date, posterPath);
             films.add(tempFilm);
 
         }

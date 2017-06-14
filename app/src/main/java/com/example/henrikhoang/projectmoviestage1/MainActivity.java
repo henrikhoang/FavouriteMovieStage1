@@ -25,8 +25,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
     private RecyclerView mRecyclerView;
     private TextView mErrorTextView;
     private ProgressBar mLoadingIndicator;
-
     private MovieAdapter mMovieAdapter;
+
+    private List<Film> films;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +62,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
     }
 
     @Override
-    public void onClick(Film film) {
+    public void onClick(String film) {
         Context context = this;
-        Toast.makeText(context, film.getTitle()+ " is clicked", Toast.LENGTH_SHORT)
+        Toast.makeText(context, film+ " is clicked", Toast.LENGTH_SHORT)
                 .show();
     }
 //        Context context = this;
@@ -124,16 +125,15 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
                 String jsonMovieResponse = Network.
                         getResponseFromHttpUrl(movieRequestURL);
 
-                List<Film> films = OpenMovieJsonUtils.getSimpleMovieStringsFromJson(MainActivity.this,
+                List<Film> movies = OpenMovieJsonUtils.getSimpleMovieStringsFromJson(MainActivity.this,
                         jsonMovieResponse);
-
-                return films;
+                films = movies;
+            return films;
 
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
             }
-
         }
 
         @Override
@@ -162,9 +162,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
             URL movieRequestURL = Network.buildURLTopRated();
             try {
                 String jsonMovieResponse = Network.getResponseFromHttpUrl(movieRequestURL);
-                List<Film> films = OpenMovieJsonUtils.getSimpleMovieStringsFromJson(MainActivity.this,
+                List<Film> movies = OpenMovieJsonUtils.getSimpleMovieStringsFromJson(MainActivity.this,
                         jsonMovieResponse);
-
+                films = movies;
                 return films;
 
             } catch (Exception e) {
