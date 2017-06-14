@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="/Users/henrikhoang/.gradle/caches/modules-2/files-2.1/org.parceler/parceler-api/1.1.6/2a06b6b1ecf5dadee8a874dfb51ad018fde3e6c5/parceler-api-1.1.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a06b6b1ecf5dadee8a874dfb51ad018fde3e6c5">
+        <dex dex="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/transforms/dex/debug/folders/1000/10/parceler-api-1.1.6_c7a8d62059ef9b4b1c1e5bf8f3b9194b0c5eedc0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
 
 
 /**
@@ -20,14 +21,16 @@ import com.squareup.picasso.Picasso;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
 
-    private String[] mMovieData;
+//    private String[] mMovieData;
+
+    private List<Film> films;
 
     private final MovieAdapterOnClickHandler mClickHandler;
 
     private Context context;
 
     public interface MovieAdapterOnClickHandler {
-        void onClick (String listedMovie);
+        void onClick (Film film);
     }
 
     public MovieAdapter(MovieAdapterOnClickHandler clickHandler, Context ctx) {
@@ -52,8 +55,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            String movieSelected = mMovieData[adapterPosition];
-            mClickHandler.onClick(movieSelected);
+            Film film = films.get(adapterPosition);
+            mClickHandler.onClick(film);
         }
     }
 
@@ -70,19 +73,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     @Override
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
-        String movieBeingSelected = mMovieData[position];
+        String movieBeingSelected = films.get(position).getPosterPath();
 
-        Picasso.with(context).load(movieBeingSelected).into(holder.mMovieImageView);
+        Picasso.with(context).load("http://image.tmdb.org/t/p/w500"+
+                movieBeingSelected).into(holder.mMovieImageView);
     }
 
     @Override
     public int getItemCount() {
-        if (null == mMovieData) return 0;
-        return mMovieData.length;
+        if (null == films) return 0;
+        return films.size();
     }
 
-    public void setMovieData(String[] movieData) {
-        mMovieData = movieData;
+    public void setMovieData(List<Film> movies) {
+        films = movies;
         notifyDataSetChanged();
     }
 }
