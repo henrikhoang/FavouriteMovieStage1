@@ -3,12 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/henrikhoang/.gradle/caches/modules-2/files-2.1/org.parceler/parceler-api/1.1.6/2a06b6b1ecf5dadee8a874dfb51ad018fde3e6c5/parceler-api-1.1.6.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1d10207aaa5a1610566edfbe7ac3f089faf8dd9d/classes.dex" />
+        sha1="2a06b6b1ecf5dadee8a874dfb51ad018fde3e6c5">
+        <dex dex="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/transforms/dex/debug/folders/1000/10/parceler-api-1.1.6_c7a8d62059ef9b4b1c1e5bf8f3b9194b0c5eedc0/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -16,8 +16,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="e8298b312c59dab2a18e8293501d8cdd860c5d33">
+        sha1="317afabb8b255f646c07828637016ccf38f91d64">
         <dex dex="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_5365ee5f62a24b1e42b2216d42fb779dcb5ae96c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/henrikhoang/Documents/workspace/UdaCity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1d10207aaa5a1610566edfbe7ac3f089faf8dd9d/classes.dex" />
     </item>
 
 </items>

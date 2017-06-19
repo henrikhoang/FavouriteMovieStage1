@@ -3,65 +3,56 @@ package com.example.henrikhoang.projectmoviestage1.utility;
 
 import android.content.Context;
 
+import com.example.henrikhoang.projectmoviestage1.Film;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.HttpURLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by henrikhoang on 5/29/17.
  */
 
 public final class OpenMovieJsonUtils {
-    public static String[] getSimpleMovieStringsFromJson(Context context, String movieJsonStr)
+    private static final String RESULT = "results";
+    final static  String TITLE = "original_title";
+    final static String RELEASE_DATE = "release_date";
+    final static String VOTE = "vote_average";
+    final static String PLOT = "overview";
+    final static String POSTER = "poster_path";
+
+    public static List<Film> getSimpleMovieStringsFromJson(Context context, String movieJsonStr)
             throws JSONException {
 
-
-        final String RESULT = "results";
-
-
-        final String TITLE = "title";
-
-
-        String[] parsedMovieData = null;
-
         JSONObject movieJson = new JSONObject(movieJsonStr);
 
-        JSONArray movieArray = movieJson.getJSONArray(RESULT);
+//        title, release date, movie poster, vote average, and plot synopsis.
 
-        parsedMovieData = new String[movieArray.length()];
+        JSONArray movieArray = movieJson.getJSONArray(RESULT);
+        
+        List<Film> films = new ArrayList<>();
 
         for (int i = 0; i < movieArray.length(); i++) {
-            String movieTitle;
+
+
             JSONObject selectedMovie = movieArray.getJSONObject(i);
 
-            movieTitle = selectedMovie.getString(TITLE);
+            Film tempFilm = new Film();
+            tempFilm.setTitle(selectedMovie.getString(TITLE));
+            tempFilm.setDate(selectedMovie.getString(RELEASE_DATE));
+            tempFilm.setOverview(selectedMovie.getString(PLOT));
+            tempFilm.setVote(selectedMovie.getDouble(VOTE));
+            tempFilm.setPosterPath(selectedMovie.getString(POSTER));
 
-            parsedMovieData[i] = movieTitle;
+            films.add(tempFilm);
+
         }
 
-        return parsedMovieData;
+        return films;
 
-    }
-
-    public static String[] getSimpleMoviePosterFromJson(Context context, String movieJsonStr) throws JSONException {
-        final String RESULT = "results";
-        String[] parsedMovieData;
-        final String POSTER = "poster_path";
-
-        JSONObject movieJson = new JSONObject(movieJsonStr);
-        JSONArray movieArray = movieJson.getJSONArray(RESULT);
-
-        parsedMovieData = new String[movieArray.length()];
-
-        for (int i = 0; i< movieArray.length(); i++) {
-            String path;
-            JSONObject selectedMovie = movieArray.getJSONObject(i);
-            path = selectedMovie.getString(POSTER);
-            parsedMovieData[i] = "http://image.tmdb.org/t/p/w500" + path;
-        }
-        return parsedMovieData;
     }
 
 }

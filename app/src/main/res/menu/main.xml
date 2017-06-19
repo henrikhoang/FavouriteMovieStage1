@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#000000">
     <item
-        android:title="@string/action_refresh"
-        android:icon="@drawable/refresh_icon_2"
         android:id="@+id/action_refresh"
-        android:orderInCategory="3"
-        app:showAsAction="always"
-        />
-    <item
-        android:title="Popular"
-        android:id="@+id/action_popolar"
-        android:orderInCategory="2"
-        app:showAsAction="always"/>
+        android:icon="@android:drawable/ic_menu_revert"
+        android:title="@string/action_refresh"
+        app:showAsAction="ifRoom" />
+    <item android:title="@string/SORT_BY"
+        android:id="@+id/tv_sort_by"
+        android:orderInCategory="1"
+        app:showAsAction="never" />
+
 
     <item
-        android:title="Top Rated"
+        android:id="@+id/action_popular"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:orderInCategory="2"
+        android:title="@string/POPULAR"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_top_rated"
-        android:orderInCategory="1"
-        app:showAsAction="always"/>
+        android:icon="@android:drawable/btn_star_big_on"
+        android:orderInCategory="3"
+        android:title="@string/TOP_RATED"
+        app:showAsAction="never" />
+
 </menu>
