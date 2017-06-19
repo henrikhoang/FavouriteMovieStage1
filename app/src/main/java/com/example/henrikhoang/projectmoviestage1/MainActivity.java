@@ -166,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
                 String jsonMovieResponse = Network.getResponseFromHttpUrl(movieRequestURL);
                 List<Film> movies = OpenMovieJsonUtils.getSimpleMovieStringsFromJson(MainActivity.this,
                         jsonMovieResponse);
-//                films = movies;
                 return movies;
 
             } catch (Exception e) {
