@@ -1,7 +1,6 @@
 package com.example.henrikhoang.projectmoviestage1.utility;
 
 import android.net.Uri;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,8 +14,6 @@ import java.util.Scanner;
  */
 
 public final class Network {
-
-    private static final String TAG = Network.class.getSimpleName();
 
     private static final String API_KEY =
             "6712d9f6ddd870ad1a45854cde7e9e63";
@@ -51,8 +48,6 @@ public final class Network {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
-        Log.v(TAG, "Built URL" + url);
         return url;
     }
 
@@ -70,8 +65,6 @@ public final class Network {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
-//        Log.v(TAG, "Built URL" + url);
         return url;
     }
 

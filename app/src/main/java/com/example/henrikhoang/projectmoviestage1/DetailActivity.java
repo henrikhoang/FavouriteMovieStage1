@@ -2,6 +2,7 @@ package com.example.henrikhoang.projectmoviestage1;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,11 +24,12 @@ public class DetailActivity extends AppCompatActivity {
         mDisplayInfo = (TextView) findViewById(R.id.tv_movie_info);
         mDisplayPoster = (ImageView) findViewById(R.id.iv_movie_thumbnail);
         mDisplayOverview = (TextView) findViewById(R.id.tv_display_movie_overview);
+        mDisplayInfo.setMovementMethod(new ScrollingMovementMethod());
 
         Film film = Parcels.unwrap(getIntent().getParcelableExtra("film"));
-        mDisplayInfo.setText("Title: " + film.getTitle() + "\n\n" + "Rating: " +film.getVote()+
-                "/10" + "\n\n" + "Release Date: " +film.getDate());
-        mDisplayOverview.setText("Plot: " + "\n" + film.getOverview());
+        mDisplayInfo.setText("TITLE: " + film.getTitle() + "\n\n" + "RATING: " +film.getVote()+
+                "/10" + "\n\n" + "RELEASE DATE: " + film.getDate());
+        mDisplayOverview.setText(film.getOverview());
         Picasso.with(this).load("http://image.tmdb.org/t/p/w500"+film.getPosterPath()).into(mDisplayPoster);
 
     }
