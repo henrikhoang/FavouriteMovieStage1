@@ -27,7 +27,7 @@ public class DetailActivity extends AppCompatActivity {
         mDisplayInfo.setMovementMethod(new ScrollingMovementMethod());
 
         Film film = Parcels.unwrap(getIntent().getParcelableExtra("film"));
-        mDisplayInfo.setText("TITLE: " + film.getTitle() + "\n\n" + "RATING: " +film.getVote()+
+        mDisplayInfo.setText("TITLE: " + "\n" + film.getTitle() + "\n\n" + "RATING: " + film.getVote()+
                 "/10" + "\n\n" + "RELEASE DATE: " + film.getDate());
         mDisplayOverview.setText(film.getOverview());
         Picasso.with(this).load("http://image.tmdb.org/t/p/w500"+film.getPosterPath()).into(mDisplayPoster);
