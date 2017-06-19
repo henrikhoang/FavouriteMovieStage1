@@ -1,6 +1,7 @@
 package com.example.henrikhoang.projectmoviestage1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.henrikhoang.projectmoviestage1.MovieAdapter.MovieAdapterOnClickHandler;
 import com.example.henrikhoang.projectmoviestage1.utility.Network;
 import com.example.henrikhoang.projectmoviestage1.utility.OpenMovieJsonUtils;
+
+import org.parceler.Parcels;
 
 import java.net.URL;
 import java.util.List;
@@ -26,8 +28,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
     private TextView mErrorTextView;
     private ProgressBar mLoadingIndicator;
     private MovieAdapter mMovieAdapter;
-
-    private List<Film> films;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mMovieAdapter = new MovieAdapter(this, getApplicationContext(), films);
+        mMovieAdapter = new MovieAdapter(this, getApplicationContext());
 
         mRecyclerView.setAdapter(mMovieAdapter);
 
@@ -64,17 +64,13 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
     @Override
     public void onClick(Film film) {
         Context context = this;
-        Toast.makeText(context, film+ " is clicked", Toast.LENGTH_SHORT)
-                .show();
-    }
-//        Context context = this;
-//        Class destinationClass = DetailActivity.class;
-//        Intent intent = new Intent(Intent.ACTION_VIEW);
-//        intent.setClass(context, destinationClass);
-//        intent.putExtra("URL", listedMovie);
-//        startActivity(intent);
+        Class destinationClass = DetailActivity.class;
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setClass(context, destinationClass);
+        intent.putExtra("film", Parcels.wrap(film));
+        startActivity(intent);
 
-//    }
+    }
 
     private void showMovieDataView() {
         mErrorTextView.setVisibility(View.INVISIBLE);
@@ -95,17 +91,24 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
     //activities for menu items
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int menuItemThatWasSelected = item.getItemId();
-        if (menuItemThatWasSelected == R.id.action_refresh || menuItemThatWasSelected == R.id.action_popular) {
-            mMovieAdapter.setMovieData(null);
-            loadMovieDataPopular();
-            return true;
-        } else if (menuItemThatWasSelected == R.id.action_top_rated) {
-            mMovieAdapter.setMovieData(null);
-            loadMovieDataRate();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                mMovieAdapter.setMovieData(null);
+                loadMovieDataPopular();
+                return true;
+            case R.id.action_popular:
+                mMovieAdapter.setMovieData(null);
+                loadMovieDataPopular();
+                return true;
+            case R.id.action_top_rated:
+                mMovieAdapter.setMovieData(null);
+                loadMovieDataRate();
+                return true;
+            case R.id.tv_sort_by:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     //used when popular option is called
@@ -127,8 +130,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
 
                 List<Film> movies = OpenMovieJsonUtils.getSimpleMovieStringsFromJson(MainActivity.this,
                         jsonMovieResponse);
-                films = movies;
-            return films;
+            return movies;
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -137,11 +139,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         }
 
         @Override
-        protected void onPostExecute(List<Film> films) {
+        protected void onPostExecute(List<Film> movies) {
             mLoadingIndicator.setVisibility(View.INVISIBLE);
-            if (films != null) {
+            if (movies != null) {
                 showMovieDataView();
-                mMovieAdapter.setMovieData(films);
+                mMovieAdapter.setMovieData(movies);
             } else {
                 showErrorMessage();
             }
@@ -164,8 +166,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
                 String jsonMovieResponse = Network.getResponseFromHttpUrl(movieRequestURL);
                 List<Film> movies = OpenMovieJsonUtils.getSimpleMovieStringsFromJson(MainActivity.this,
                         jsonMovieResponse);
-                films = movies;
-                return films;
+//                films = movies;
+                return movies;
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -174,11 +176,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         }
 
         @Override
-        protected void onPostExecute(List<Film> films) {
+        protected void onPostExecute(List<Film> movies) {
             mLoadingIndicator.setVisibility(View.INVISIBLE);
-            if (films != null) {
+            if (movies != null) {
                 showMovieDataView();
-                mMovieAdapter.setMovieData(films);
+                mMovieAdapter.setMovieData(movies);
             } else {
                 showErrorMessage();
             }

@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,6 @@ import java.util.List;
  */
 
 public final class OpenMovieJsonUtils {
-    private static final String TAG = OpenMovieJsonUtils.class.getSimpleName();
     private static final String RESULT = "results";
     final static  String TITLE = "original_title";
     final static String RELEASE_DATE = "release_date";
@@ -33,9 +33,7 @@ public final class OpenMovieJsonUtils {
 
         JSONArray movieArray = movieJson.getJSONArray(RESULT);
         
-        List<Film> films = null;
-
-//        compare = new String[movieArray.length()];
+        List<Film> films = new ArrayList<>();
 
         for (int i = 0; i < movieArray.length(); i++) {
 
@@ -46,7 +44,7 @@ public final class OpenMovieJsonUtils {
             tempFilm.setTitle(selectedMovie.getString(TITLE));
             tempFilm.setDate(selectedMovie.getString(RELEASE_DATE));
             tempFilm.setOverview(selectedMovie.getString(PLOT));
-            tempFilm.setVote(selectedMovie.getInt(VOTE));
+            tempFilm.setVote(selectedMovie.getDouble(VOTE));
             tempFilm.setPosterPath(selectedMovie.getString(POSTER));
 
             films.add(tempFilm);
@@ -55,25 +53,6 @@ public final class OpenMovieJsonUtils {
 
         return films;
 
-    }
-
-    public static String[] getSimpleMoviePosterFromJson(Context context, String movieJsonStr) throws JSONException {
-
-        String[] parsedMovieData;
-
-
-        JSONObject movieJson = new JSONObject(movieJsonStr);
-        JSONArray movieArray = movieJson.getJSONArray(RESULT);
-
-        parsedMovieData = new String[movieArray.length()];
-
-        for (int i = 0; i< movieArray.length(); i++) {
-            String path;
-            JSONObject selectedMovie = movieArray.getJSONObject(i);
-            path = selectedMovie.getString(POSTER);
-            parsedMovieData[i] = "http://image.tmdb.org/t/p/w500" + path;
-        }
-        return parsedMovieData;
     }
 
 }

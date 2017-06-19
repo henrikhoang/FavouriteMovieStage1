@@ -1,25 +1,24 @@
 package com.example.henrikhoang.projectmoviestage1;
 
+import org.parceler.Parcel;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by henrikhoang on 6/12/17.
  */
 
-
+@Parcel
 public class Film {
-    private int id;
-    private String title;
-    private String posterPath;
-    private int vote;
-    private String date;
-    private String overview;
+    String title;
+     String posterPath;
+    double vote;
+     String date;
+   String overview;
 
-    public int getId() {
-        return id;
-    }
-
-    private void setId(int id) {
-        this.id = id;
-    }
+    public Film() {}
 
     public String getTitle() {
         return title;
@@ -40,7 +39,17 @@ public class Film {
     }
 
     public String getDate () {
-        return date;
+        SimpleDateFormat spf=new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Date newDate=spf.parse(date);
+            spf= new SimpleDateFormat("mm-dd-yyyy");
+            date = spf.format(newDate);
+            return date;
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void setDate(String date) {
@@ -55,19 +64,11 @@ public class Film {
         this.overview = overview;
     }
 
-    public int getVote() {
+    public double getVote() {
         return vote;
     }
 
-    public void setVote(int vote) { this.vote = vote; }
+    public void setVote(double vote) { this.vote = vote; }
 
-//    public Film(String fTitle, String fOverview,
-//                int fVote, String fDate, String fPosterPath) {
-//        this.title = fTitle;
-//        this.overview = fOverview;
-//        this.posterPath = fPosterPath;
-//        this.vote = fVote;
-//        this.date = fDate;
-//    }
 
 }

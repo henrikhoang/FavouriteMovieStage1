@@ -5,20 +5,26 @@
     <item
         android:id="@+id/action_refresh"
         android:icon="@android:drawable/ic_menu_revert"
-        android:orderInCategory="3"
         android:title="@string/action_refresh"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+    <item android:title="@string/SORT_BY"
+        android:id="@+id/tv_sort_by"
+        android:orderInCategory="1"
+        app:showAsAction="never" />
+
+
     <item
         android:id="@+id/action_popular"
         android:icon="@android:drawable/ic_menu_sort_by_size"
         android:orderInCategory="2"
-        android:title="Popular"
-        app:showAsAction="always" />
+        android:title="@string/POPULAR"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_top_rated"
         android:icon="@android:drawable/btn_star_big_on"
-        android:orderInCategory="1"
-        android:title="Top Rated"
-        app:showAsAction="always" />
+        android:orderInCategory="3"
+        android:title="@string/TOP_RATED"
+        app:showAsAction="never" />
+
 </menu>
