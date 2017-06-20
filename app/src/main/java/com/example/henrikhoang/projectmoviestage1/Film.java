@@ -44,7 +44,8 @@ public class Film {
             Date newDate=spf.parse(date);
             spf= new SimpleDateFormat("mm-dd-yyyy");
             date = spf.format(newDate);
-            return date;
+            return date; 
+            //Source: https://stackoverflow.com/questions/454315/how-do-you-format-date-and-time-in-android
         }
         catch (ParseException e) {
             e.printStackTrace();
