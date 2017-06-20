@@ -16,7 +16,7 @@ import java.util.Scanner;
 public final class Network {
 
     private static final String API_KEY =
-            "6712d9f6ddd870ad1a45854cde7e9e63";
+            "";
 //insert your own API key here
 
     private static final String POPULAR_MOVIE_URL =
