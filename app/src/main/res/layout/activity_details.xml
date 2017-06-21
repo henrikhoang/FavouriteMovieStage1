@@ -23,14 +23,18 @@
         android:paddingRight="16dp"
         android:layout_toEndOf="@id/iv_movie_thumbnail"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_movie_thumbnail"
-        android:padding="16dp"
-        android:textSize="18sp"
-        android:id="@+id/tv_display_movie_overview"
-        android:scrollbars="vertical"
-        android:maxLines="50"/>
+        android:layout_below="@+id/iv_movie_thumbnail">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="20sp"
+            android:id="@+id/tv_display_movie_overview"
+            android:scrollbars="vertical"
+            android:maxLines="50"/>
+    </ScrollView>
 
 </RelativeLayout>
